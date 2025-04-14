@@ -38,7 +38,7 @@ embeddings = embeddings.astype("float32")
 print("creating FAISS index")
 #create a new flast FAISS index that uses L2 distance to measure similarity between vectors
 #Why L2? It’s a standard way to compare vectors. Lower L2 = more similar.
-index = faiss.IndexFlatL2(embeddings.shape[1])  # ✅ correct
+index = faiss.IndexFlatL2(embeddings.shape[1])
 #adds all your vector embeddings to the FAISS index
 index.add(embeddings)
 
