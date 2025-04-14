@@ -14,6 +14,9 @@ I stored these embeddings in a FAISS index, which makes it easy to quickly searc
 
 This approach keeps the answers grounded in real medical content and avoids the risk of the model making things up.
 
+Note: The `faiss_index.bin` and `qa_metadata.pkl` files inside the `embeddings/` folder are not included in the repo due to size. You can regenerate them by running `build_index.py` . You can find the dataset under the `data/` folder.
+
+
 ## Project Structure
 
 Medical-Assistant-Bot-Assignment/
