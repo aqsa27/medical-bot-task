@@ -8,6 +8,8 @@ To build the assistant, I chose a retrieval-based method. The dataset included o
 
 I started by cleaning the dataset — removing any missing values, trimming extra spaces, and dropping duplicate questions. Then I used the `all-MiniLM-L6-v2` model from the `sentence-transformers` library to convert each Q+A pair into an embedding vector.
 
+I chose all-MiniLM-L6-v2 because it offers a strong balance between speed and semantic accuracy for sentence-level embeddings. It's lightweight and optimized for fast similarity search in large-scale datasets like this one.
+
 I stored these embeddings in a FAISS index, which makes it easy to quickly search and find the closest match to a user’s question. When someone types a question, the bot encodes it, searches the index, and returns the most relevant answer.
 
 This approach keeps the answers grounded in real medical content and avoids the risk of the model making things up.
@@ -75,7 +77,7 @@ Anemia also can cause many other health problems. People who have kidney disease
 
 **A:**
 
-                
+```               
 An inherited tendency to develop allergies, called atopy (AT-o-pe)
                 
 Parents who have asthma
@@ -98,19 +100,23 @@ Please enter your question: that young children's immune systems develop during 
 
 
 ---
-
+```
 **Q3:** How can depression show up in someone’s day-to-day life?
 
 **A:**
 
+```
 Bot: Depression is a serious medical illness. It's more than just a feeling of being sad or "blue" for a few days. If you are one of the more than 19 million teens and adults in the United States who have depression, the feelings do not go away. They persist and interfere with your everyday life. Symptoms can include       - Feeling sad or "empty"    - Loss of interest in favorite activities    - Overeating, or not wanting to eat at all    - Not being able to sleep, or sleeping too much    - Feeling very tired    - Feeling hopeless, irritable, anxious, or guilty    - Aches or pains, headaches, cramps, or digestive problems    - Thoughts of death or suicide       Depression is a disorder of the brain. There are a variety of causes, including genetic, biological, environmental, and psychological factors. Depression can happen at any age, but it often begins in teens and young adults. It is much more common in women. Women can also get postpartum depression after the birth of a baby. Some people get seasonal affective disorder in the winter. Depression is one part of bipolar disorder.    There are effective treatments for depression, including antidepressants, talk therapy, or both.    NIH: National Institute of Mental Health
+---
+```
 
 **Q4:** What kinds of treatments help manage high blood pressure?
 
 **A:**
 
+```
 Bot: Today, many different types of medicines are available to control high blood pressure. These medicines work in different ways. Some lower blood pressure by removing extra fluid and salt from your body. Others affect blood pressure by slowing down the heartbeat, or by relaxing and widening blood vessels. Often, two or more drugs work better than one. Here are the types of medicines used to treat high blood pressure. -   Diuretics (water or fluid Pills)  flush excess sodium from your body, which reduces the amount of fluid in your blood and helps to lower your blood pressure. Diuretics are often used with other high blood pressure medicines, sometimes in one combined pill.   -  Beta Blockers help your heart beat slower and with less force. As a result, your heart pumps less blood through your blood vessels, which can help to lower your blood pressure.  -  Angiotensin-Converting Enzyme (ACE) Inhibitors. Angiotensin-II is a hormone that narrows blood vessels, increasing blood pressure. ACE converts Angiotensin I to Angiotensin II. ACE inhibitors block this process, which stops the production of Angiotensin II, lowering blood pressure.  -  Angiotensin II Receptor Blockers (ARBs) block angiotensin II hormone from binding with receptors in the blood vessels. When angiotensin II is blocked, the blood vessels do not constrict or narrow, which can lower your blood pressure.  -  Calcium Channel Blockers keep calcium from entering the muscle cells of your heart and blood vessels. This allows blood vessels to relax, which can lower your blood pressure.   -  Alpha Blockers reduce nerve impulses that tighten blood vessels. This allows blood to flow more freely, causing blood pressure to go down.  -  Alpha-Beta Blockers reduce nerve impulses the same way alpha blockers do. However, like beta blockers, they also slow the heartbeat. As a result, blood pressure goes down.  -  Central Acting Agents act in the brain to decrease nerve signals that narrow blood vessels, which can lower blood pressure.  -  Vasodilators relax the muscles in blood vessel walls, which can lower blood pressure.   Diuretics (water or fluid Pills)  flush excess sodium from your body, which reduces the amount of fluid in your blood and helps to lower your blood pressure. Diuretics are often used with other high blood pressure medicines, sometimes in one combined pill. Beta Blockers help your heart beat slower and with less force. As a result, your heart pumps less blood through your blood vessels, which can help to lower your blood pressure. Angiotensin-Converting Enzyme (ACE) Inhibitors. Angiotensin-II is a hormone that narrows blood vessels, increasing blood pressure. ACE converts Angiotensin I to Angiotensin II. ACE inhibitors block this process, which stops the production of Angiotensin II, lowering blood pressure. Angiotensin II Receptor Blockers (ARBs) block angiotensin II hormone from binding with receptors in the blood vessels. When angiotensin II is blocked, the blood vessels do not constrict or narrow, which can lower your blood pressure. Calcium Channel Blockers keep calcium from entering the muscle cells of your heart and blood vessels. This allows blood vessels to relax, which can lower your blood pressure. Alpha Blockers reduce nerve impulses that tighten blood vessels. This allows blood to flow more freely, causing blood pressure to go down. Alpha-Beta Blockers reduce nerve impulses the same way alpha blockers do. However, like beta blockers, they also slow the heartbeat. As a result, blood pressure goes down. Central Acting Agents act in the brain to decrease nerve signals that narrow blood vessels, which can lower blood pressure. Vasodilators relax the muscles in blood vessel walls, which can lower blood pressure
-
+```
 
 ---
 
@@ -118,7 +124,10 @@ Bot: Today, many different types of medicines are available to control high bloo
 
 **A:**
 
+```
 Bot: Normal variations (polymorphisms) in many genes can affect the risk of developing SLE, and in most cases multiple genetic factors are thought to be involved. In rare cases, SLE is caused by mutations in single genes. Most of the genes associated with SLE are involved in immune system function, and variations in these genes likely affect proper targeting and control of the immune response. Sex hormones and a variety of environmental factors including viral infections, diet, stress, chemical exposures, and sunlight are also thought to play a role in triggering this complex disorder. About 10 percent of SLE cases are thought to be triggered by drug exposure, and more than 80 drugs that may be involved have been identified.  In people with SLE, cells that have undergone self-destruction (apoptosis) because they are damaged or no longer needed are not cleared away properly. The relationship of this loss of function to the cause or features of SLE is unclear. Researchers suggest that these dead cells may release substances that cause the immune system to react inappropriately and attack the body's tissues, resulting in the signs and symptoms of SLE.
+---
+```
 
 ## How I Evaluated the Bot
 
@@ -150,6 +159,7 @@ So instead of using numbers, I focused on whether the bot gave a **relevant and 
 If I had more time (and if the assignment allowed it), here’s what I would explore to make the assistant more powerful:
 
 - **Add a generation layer**: I’d like to add a lightweight summarization model like T5 or OpenBioLLM to rephrase or personalize the retrieved answers. That way, the bot could sound more conversational while still staying factually accurate.
+I would explore integrating Llama3-OpenBioLLM-70B, an open-source model fine-tuned on high-quality biomedical literature, PubMed, and clinical texts. Its domain-specific training makes it ideal for generating accurate, trustworthy summaries or follow-ups grounded in medical context. This would help enhance the bot's ability to deliver conversational, yet factually reliable, responses.
 
 - **Support multiple answers**: Right now, the system only returns the top match. I’d like to retrieve the top 2–3 results and either let the user choose, or combine them into a more complete answer.
 
