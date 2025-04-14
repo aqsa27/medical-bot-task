@@ -32,7 +32,7 @@ while True:
         print("Bot: Please enter a valid medical question.\n")
         continue
     if user_input.lower() in ["exit", "quit"]:
-        print("Bot: Take care and stay healthy! 👋")
+        print("Bot: Take care and stay healthy!")
         break
     #turns the input question into a 384-dimensional vector and converts it to float32 format because FAISS only works with that data type
     user_embedding = model.encode([user_input]).astype("float32")
